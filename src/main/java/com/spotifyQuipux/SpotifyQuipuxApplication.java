@@ -1,4 +1,4 @@
-package com.spotifyQuipux.spotifyQuipux;
+package com.spotifyQuipux;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
