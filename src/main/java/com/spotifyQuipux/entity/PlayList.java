@@ -1,6 +1,6 @@
 package com.spotifyQuipux.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -8,12 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name= "playlist")
-
 public class PlayList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_song", nullable = false, unique = true)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "id_playlist", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "name", length = 255)
@@ -23,7 +22,8 @@ public class PlayList {
     private String description;
 
     @OneToMany(mappedBy = "playList", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
+
     private List<Song> Songs = new ArrayList<>();
 
     public PlayList (){

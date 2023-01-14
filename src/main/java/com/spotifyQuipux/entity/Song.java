@@ -1,13 +1,13 @@
 package com.spotifyQuipux.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "song")
 public class Song {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id_song", nullable = false, unique = true)
     private Long id;
 
@@ -26,7 +26,9 @@ public class Song {
     @Column(name = "gender", length = 255)
     private String gender;
 
-    @ManyToMany
+    @ManyToOne
+    @JoinColumn(name = "id_playlist")
+    @JsonIgnore
     private PlayList playList;
 
     public Song() {
