@@ -16,21 +16,9 @@ public class SpotifyQuipuxApplication {
 		SpringApplication.run(SpotifyQuipuxApplication.class, args);
 	}
 
-	public void run(String... arg) {
-		SavePlayListInDataBase();
-	}
-
 	public SpotifyQuipuxApplication(PlayListRepository playListRepository) {
 		this.playListRepository = playListRepository;
 	}
 
-	private void SavePlayListInDataBase(){
-
-		PlayList playList1 = new PlayList("PlayList1", "my first playList");
-		PlayList playList2 = new PlayList("PlayList2", "my second playList");
-		List<PlayList> list = Arrays.asList(playList1, playList2);
-
-		list.stream().forEach(playListRepository::save);
-	}
 
 }

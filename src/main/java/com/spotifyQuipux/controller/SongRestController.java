@@ -51,6 +51,7 @@ public class SongRestController {
 
     @PostMapping("/savesong")
     public ResponseEntity<Song> createPlayList(@RequestBody Song song) {
+        System.out.println("Entreeee " + song);
         try {
             Song _song = songRepository
                     .save(new Song(song.getTitle(), song.getArtist(), song.getAlbum(), song.getYear(), song.getGender(), song.getPlayList()));

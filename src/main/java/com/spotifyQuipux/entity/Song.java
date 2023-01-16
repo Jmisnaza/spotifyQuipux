@@ -11,6 +11,10 @@ public class Song {
     @Column(name = "id_song", nullable = false, unique = true)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_playlist")
+    private PlayList playList;
+
     @Column(name = "title", length = 255)
     private String title;
 
@@ -26,13 +30,9 @@ public class Song {
     @Column(name = "gender", length = 255)
     private String gender;
 
-    @ManyToOne
-    @JoinColumn(name = "id_playlist")
-    @JsonIgnore
-    private PlayList playList;
-
     public Song() {
     }
+
 
     public Song(String title, String artist, String album, String year, String gender, PlayList playList) {
         this.title = title;
@@ -108,7 +108,7 @@ public class Song {
                 ", album='" + album + '\'' +
                 ", year='" + year + '\'' +
                 ", gender='" + gender + '\'' +
-                ", playList=" + playList +
+                ", playList=" + playList+
                 '}';
     }
 }

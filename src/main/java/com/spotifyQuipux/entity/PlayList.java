@@ -12,7 +12,7 @@ public class PlayList {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id_playlist", nullable = false, unique = true)
+    @Column(name = "id_playlist")
     private Long id;
 
     @Column(name = "name", length = 255)
@@ -21,10 +21,8 @@ public class PlayList {
     @Column(name = "description", length = 255)
     private String description;
 
-    @OneToMany(mappedBy = "playList", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-
-    private List<Song> Songs = new ArrayList<>();
+    @OneToMany(mappedBy = "playList", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Song> song = new ArrayList<>();
 
     public PlayList (){
     }
@@ -58,11 +56,7 @@ public class PlayList {
     }
 
     public List<Song> getSongs() {
-        return Songs;
-    }
-
-    public void setSongs(List<Song> songs) {
-        Songs = songs;
+        return song;
     }
 
     @Override
@@ -71,7 +65,6 @@ public class PlayList {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", Songs=" + Songs +
                 '}';
     }
 }

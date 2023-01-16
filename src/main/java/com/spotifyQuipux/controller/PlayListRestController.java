@@ -51,6 +51,7 @@ public class PlayListRestController {
     @PostMapping("/saveplaylist")
     public ResponseEntity<PlayList> createPlayList(@RequestBody PlayList playList) {
         try {
+            System.out.println("Entreeee playlist" + playList);
             PlayList _playList = playListRepository
                     .save(new PlayList(playList.getName(), playList.getDescription()));
             return new ResponseEntity<>(_playList, HttpStatus.CREATED);
